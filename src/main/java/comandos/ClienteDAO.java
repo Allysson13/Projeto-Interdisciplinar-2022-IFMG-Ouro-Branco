@@ -2,37 +2,36 @@ package comandos;
 
 import com.mycompany.projetobarbearia.Conexao;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import modelos.Atendimento;
+import modelos.Cliente;
 
 public class ClienteDAO {
     
     //DAO -> sigla para Data Access Object
     
     //metodo para inserir
-    public boolean inserirCliente(Cliente cl){
+    public boolean inserirAtendimento(Cliente b){
         
         try {
             String SQL1 = "INSERT INTO Gerenciamento_de_Barbearia_BD.Cliente"
-                    + "(data, tipoServico, valor, nomeClente, musicaFavorita)"
+                    + "(codigo, nome, idade, senha, email, tipoUsuario)"
                     + "Values(?, ?, ?);";
             
             Conexao c = new Conexao();
             Connection conexao = c.obterConexao();
             PreparedStatement ps1 = conexao.prepareStatement(SQL1);
-            ps1.setDate(1, a.getData());
-            ps1.setString(2, a.getTipoServico());
-            ps1.setDouble(2, a.getValor());
-            ps1.setString(2, a.getNomeCliente());
-            ps1.setString(2, a.getMusicaFavorita());
+            ps1.setString(1, b.getCodigo());
+            ps1.setString(2, b.getNome());
+            ps1.setInt(2, b.getIdade());
+            ps1.setString(2, b.getSenha());
+            ps1.setString(2, b.getEmail());
+            ps1.setString(2, b.getTipoUsuario());
             
             ps1.executeUpdate();
             
@@ -40,7 +39,7 @@ public class ClienteDAO {
             
         } catch (SQLException ex) {
             
-            Logger.getLogger(AtendimentoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
             
         }
         
@@ -51,53 +50,29 @@ public class ClienteDAO {
     // -----> SELECT
     // -----> depois faremos o UPDATE
     
-    public List<Cliente> consultaCliente (){
+    public List<Cliente> consultaCliente(){
         
-        Scanner entrada = new Scanner(System.in);
-        
-        List<Atendimento> retorno = null;
+        List<Cliente> retorno = null;
         
         try {
             
-            retorno =  new ArrayList<Atendimento>();
+            retorno =  new ArrayList<Cliente>();
             Conexao c = new Conexao();
             Connection conexao = c.obterConexao();
-            String SQL = "SELECT * FROM Gerenciamento_de_Barbearia_BD.Atendimento";
+            String SQL = "SELECT * FROM Gerenciamento_de_Barbearia_BD.Cliente";
             PreparedStatement ps = conexao.prepareStatement(SQL);
             ResultSet r = ps.executeQuery();
             
             while(r.next()){
                 
-                System.out.println("Informe o ano do atendimento: ");
-                int ano = entrada.nextInt();
-                
-                System.out.println("Informe o mes do atendimento: ");
-                int mes = entrada.nextInt();
-                
-                System.out.println("Informe o dia do atendimento: ");
-                int dia = entrada.nextInt();
-                
-                Date data = new Date(ano, mes, dia);
-                
-                System.out.println("Informe o tipo do servico: ");
-                String tipoServico = entrada.next();
-                
-                System.out.println("Informe o valor do atendimento: ");
-                double valor = entrada.nextDouble();
-                
-                System.out.println("Informe o nome do cliente: ");
-                String nome = entrada.next();
-                
-                System.out.println("Informe a sua música favorita: ");
-                String musica = entrada.next();
-                
-                Atendimento atual = new Atendimento();
-                atual.setData(data);
-                atual.setTipoServico(tipoServico);
-                atual.setValor(valor);
-                atual.setNomeCliente(nome);
-                atual.setMusicaFavorita(musica);
-                
+                Cliente atual = new Cliente();
+                atual.setCodigo(r.getString("codigo"));
+                atual.setNome(r.getString("nome"));
+                atual.setIdade(r.getInt("idade"));
+                atual.setSenha(r.getString("senha"));
+                atual.setEmail(r.getString("email"));
+                atual.setTipoUsuario(r.getString("tipousUario"));
+                retorno.add(atual);
                 
             }
             
@@ -105,12 +80,51 @@ public class ClienteDAO {
             
         } catch (SQLException ex) {
             
-            Logger.getLogger(AtendimentoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
             
         }
         
         return retorno;
         
+    }
+    
+    public List<Cliente> RelatorioGeral(){
+        
+        List<Cliente> retorno = null;
+        
+        try{
+            
+            retorno = new ArrayList<Cliente>();
+            Conexao c = new Conexao();
+            Connection conexao = c.obterConexao();
+            String SQL = "SELECT codigo, nome, idade, tipoUsuario FROM Gerenciamento_de_Barbearia_BD.Cliente";
+            PreparedStatement ps = conexao.prepareStatement(SQL);
+            ResultSet r = ps.executeQuery();
+            
+            while(r.next()){
+                
+                Cliente atual = new Cliente();
+                atual.setCodigo(r.getString("codigo"));
+                atual.setNome(r.getString("nome"));
+                atual.setIdade(r.getInt("idade"));
+                atual.setSenha(r.getString("senha"));
+                atual.setEmail(r.getString("email"));
+                atual.setTipoUsuario(r.getString("tipousUario"));
+                retorno.add(atual);
+                
+            }
+            
+            conexao.close();
+            
+        }catch(SQLException ex){
+            
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            
+            return null;
+            
+        }
+        
+        return retorno;
     }
     
 }

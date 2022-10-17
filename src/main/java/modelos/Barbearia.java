@@ -9,6 +9,9 @@ public class Barbearia {
     
     //construtores 
 
+    public Barbearia() {
+    }
+
     public Barbearia(String id, String nomeGerente) {
         this.id = id;
         this.nomeGerente = nomeGerente;

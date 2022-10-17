@@ -12,6 +12,10 @@ public class Cliente {
     private String tipoUsuario;
     
     //construtores
+    
+    public Cliente() {
+        
+    }
 
     public Cliente(String codigo, String nome, int idade, String senha, String email, String tipoUsuario) {
         this.codigo = codigo;

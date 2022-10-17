@@ -17,12 +17,13 @@ public class BarbeariaDAO {
     //DAO -> sigla para Data Access Object
     
     //metodo para inserir
-    public boolean inserirBarbearia(Barbearia b){
+    public boolean inserirAtendimento(Barbearia b){
         
         try {
-            String SQL1 = "INSERT INTO Gerenciamento_de_Barbearia_BD.Atendimento"
-                    + "(data, servico, cliente)"
-                    + "Values(?, ?, ?);";
+            
+            String SQL1 = "INSERT INTO Gerenciamento_de_Barbearia_BD.Barbearia"
+                    + "(id, nomeGerente)"
+                    + "Values(?, ?);";
             
             Conexao c = new Conexao();
             Connection conexao = c.obterConexao();
@@ -36,7 +37,7 @@ public class BarbeariaDAO {
             
         } catch (SQLException ex) {
             
-            Logger.getLogger(AtendimentoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BarbeariaDAO.class.getName()).log(Level.SEVERE, null, ex);
             
         }
         
@@ -47,25 +48,25 @@ public class BarbeariaDAO {
     // -----> SELECT
     // -----> depois faremos o UPDATE
     
-    public List<Atendimento> consultaAtividade(){
+    public List<Barbearia> consultaBarbearia(){
         
-        List<Atendimento> retorno = null;
+        List<Barbearia> retorno = null;
         
         try {
             
-            retorno =  new ArrayList<Atendimento>();
+            retorno =  new ArrayList<Barbearia>();
             Conexao c = new Conexao();
             Connection conexao = c.obterConexao();
-            String SQL = "SELECT * FROM allysson.anotações";
+            String SQL = "SELECT * FROM Gerenciamento_de_Barbearia_BD.Barbearia";
             PreparedStatement ps = conexao.prepareStatement(SQL);
             ResultSet r = ps.executeQuery();
             
             while(r.next()){
                 
-                Atendimento atual = new Atendimento();
-                atual.setDate("data");
-                atual.setConteudo("conteudo");
-                atual.setDisciplina("disciplina");
+                Barbearia atual = new Barbearia();
+                atual.setId(r.getString("id"));
+                atual.setNomeGerente(r.getString("nomeGerente"));
+                retorno.add(atual);
                 
             }
             
@@ -73,12 +74,47 @@ public class BarbeariaDAO {
             
         } catch (SQLException ex) {
             
-            Logger.getLogger(AtividadesDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BarbeariaDAO.class.getName()).log(Level.SEVERE, null, ex);
             
         }
         
         return retorno;
         
+    }
+    
+    public List<Barbearia> RelatorioGeral(){
+        
+        List<Barbearia> retorno = null;
+        
+        try{
+            
+            retorno = new ArrayList<Barbearia>();
+            Conexao c = new Conexao();
+            Connection conexao = c.obterConexao();
+            String SQL = "SELECT id FROM Gerenciamento_de_Barbearia_BD.Barbearia";
+            PreparedStatement ps = conexao.prepareStatement(SQL);
+            ResultSet r = ps.executeQuery();
+            
+            while(r.next()){
+                
+                Barbearia atual = new Barbearia();
+                atual.setId(r.getString("id"));
+                atual.setNomeGerente(r.getString("nomeGerente"));
+                retorno.add(atual);
+                
+            }
+            
+            conexao.close();
+            
+        }catch(SQLException ex){
+            
+            Logger.getLogger(BarbeariaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            
+            return null;
+            
+        }
+        
+        return retorno;
     }
     
 }
