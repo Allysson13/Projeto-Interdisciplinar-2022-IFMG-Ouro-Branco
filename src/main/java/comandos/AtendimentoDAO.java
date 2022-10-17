@@ -113,4 +113,42 @@ public class AtendimentoDAO {
         
     }
     
+    public List<Atendimento> RelatorioGeral(){
+        
+        List<Atendimento> retorno = null;
+        
+        try{
+            
+            retorno = new ArrayList<Atendimento>();
+            Conexao c = new Conexao();
+            Connection conexao = c.obterConexao();
+            String SQL = "SELECT data, tipoServico, valor, nomeCliente, musicaFavorita FROM Gerenciamento_de_Barbearia_BD.Atendimento\n";
+            PreparedStatement ps = conexao.prepareStatement(SQL);
+            ResultSet r = ps.executeQuery();
+            
+            while(r.next()){
+                
+                Atendimento atual = new Atendimento();
+                atual.setData(r.getDate("date"));
+                atual.setTipoServico(r.getString("tipoServico"));
+                atual.setValor(r.getDouble("valor"));
+                atual.setNomeCliente(r.getString("nomeCliente"));
+                atual.setMusicaFavorita(r.getString("musicaFavorita"));
+                retorno.add(atual);
+                
+            }
+            
+            conexao.close();
+            
+        }catch(SQLException ex){
+            
+            Logger.getLogger(BarbeariaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            
+            return null;
+            
+        }
+        
+        return retorno;
+    }
+    
 }
