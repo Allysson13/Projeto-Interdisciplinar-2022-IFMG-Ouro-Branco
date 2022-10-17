@@ -10,13 +10,14 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelos.Atendimento;
+import modelos.Barbearia;
 
 public class BarbeariaDAO {
     
     //DAO -> sigla para Data Access Object
     
     //metodo para inserir
-    public boolean inserirAtendimento(Atendimento a){
+    public boolean inserirBarbearia(Barbearia b){
         
         try {
             String SQL1 = "INSERT INTO Gerenciamento_de_Barbearia_BD.Atendimento"
@@ -26,9 +27,8 @@ public class BarbeariaDAO {
             Conexao c = new Conexao();
             Connection conexao = c.obterConexao();
             PreparedStatement ps1 = conexao.prepareStatement(SQL1);
-            ps1.setDate(1, a.getData());
-            ps1.setServico(2, a.getServico());
-            ps1.setCliente(3, a.getCliente());
+            ps1.setString(1, b.getId());
+            ps1.setString(2, b.getNomeGerente());
             
             ps1.executeUpdate();
             

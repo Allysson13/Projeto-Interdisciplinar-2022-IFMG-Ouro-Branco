@@ -1,13 +1,37 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelos;
 
-/**
- *
- * @author 0063398
- */
 public class Barbearia {
+    
+    //atributos
+    
+    public String id;
+    public String nomeGerente;
+    
+    //construtores 
+
+    public Barbearia(String id, String nomeGerente) {
+        this.id = id;
+        this.nomeGerente = nomeGerente;
+    }
+    
+    //encapsulamento
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNomeGerente() {
+        return nomeGerente;
+    }
+
+    public void setNomeGerente(String nomeGerente) {
+        this.nomeGerente = nomeGerente;
+    }
+    
+    //comportamentos 
     
 }
