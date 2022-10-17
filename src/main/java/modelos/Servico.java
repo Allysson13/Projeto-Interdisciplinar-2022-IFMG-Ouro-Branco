@@ -1,13 +1,49 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelos;
 
-/**
- *
- * @author 0063398
- */
 public class Servico {
+    
+    //atributos
+    
+    private String produtos;
+    private String tipoServiço;
+    private String manutencao;
+    
+    //construtores
+
+    public Servico(String produtos, String tipoServiço, String manutencao) {
+        this.produtos = produtos;
+        this.tipoServiço = tipoServiço;
+        this.manutencao = manutencao;
+    }
+    
+    //encapsulamento
+
+    public String getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(String produtos) {
+        this.produtos = produtos;
+    }
+
+    public String getTipoServiço() {
+        return tipoServiço;
+    }
+
+    public void setTipoServiço(String tipoServiço) {
+        this.tipoServiço = tipoServiço;
+    }
+
+    public String getManutencao() {
+        return manutencao;
+    }
+
+    public void setManutencao(String manutencao) {
+        this.manutencao = manutencao;
+    }
+    
+    //comportamentos
+
+    
     
 }

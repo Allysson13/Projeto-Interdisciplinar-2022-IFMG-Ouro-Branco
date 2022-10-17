@@ -7,19 +7,22 @@ public class Atendimento {
     //atributos
     
     private Date data;
-    private Servico servico;
-    private Cliente cliente;
+    private String tipoServico;
+    private double valor;
+    private String nomeCliente;
+    private String musicaFavorita;
     
     //construtores
 
-    public Atendimento(Date data, Servico servico, Cliente cliente) {
-        this.data = data;
-        this.servico = servico;
-        this.cliente = cliente;
+    public Atendimento() {
     }
 
-    public Atendimento() {
-        
+    public Atendimento(Date data, String tipoServico, double valor, String nomeCliente, String musicaFavorita) {
+        this.data = data;
+        this.tipoServico = tipoServico;
+        this.valor = valor;
+        this.nomeCliente = nomeCliente;
+        this.musicaFavorita = musicaFavorita;
     }
     
     //encapsulamento
@@ -28,24 +31,40 @@ public class Atendimento {
         return data;
     }
 
-    public Servico getServico() {
-        return servico;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
     public void setData(Date data) {
         this.data = data;
     }
 
-    public void setServico(Servico servico) {
-        this.servico = servico;
+    public String getTipoServico() {
+        return tipoServico;
     }
-    
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+
+    public void setTipoServico(String tipoServico) {
+        this.tipoServico = tipoServico;
+    }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
+
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
+    }
+
+    public String getMusicaFavorita() {
+        return musicaFavorita;
+    }
+
+    public void setMusicaFavorita(String musicaFavorita) {
+        this.musicaFavorita = musicaFavorita;
     }
     
     //comportamentos
