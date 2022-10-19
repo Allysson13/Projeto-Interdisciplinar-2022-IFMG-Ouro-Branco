@@ -10,27 +10,28 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelos.Usuario;
-import modelos.ContaBancaria;
 
-public class ContaBancariaDAO {
+public class UsuarioDAO {
     
     //DAO -> sigla para Data Access Object
     
     //metodo para inserir
-    public boolean inserirContaBancaria(ContaBancaria cb){
+    public boolean inserirAtendimento(Usuario b){
         
         try {
-            String SQL1 = "INSERT INTO Gerenciamento_de_Barbearia_BD.ContaBancaria"
-                    + "(codigo, senha, agencia, nome)"
-                    + "Values(?, ?, ?, ?);";
+            String SQL1 = "INSERT INTO Gerenciamento_de_Barbearia_BD.Cliente"
+                    + "(codigo, nome, idade, senha, email, tipoUsuario)"
+                    + "Values(?, ?, ?);";
             
             Conexao c = new Conexao();
             Connection conexao = c.obterConexao();
             PreparedStatement ps1 = conexao.prepareStatement(SQL1);
-            ps1.setString(1, cb.getCodigo());
-            ps1.setString(2, cb.getSenha());
-            ps1.setString(2, cb.getAgencia());
-            ps1.setString(2, cb.getNomeTitular());
+            ps1.setString(1, b.getCodigo());
+            ps1.setString(2, b.getNome());
+            ps1.setInt(2, b.getIdade());
+            ps1.setString(2, b.getSenha());
+            ps1.setString(2, b.getEmail());
+            ps1.setString(2, b.getTipoUsuario());
             
             ps1.executeUpdate();
             
@@ -38,7 +39,7 @@ public class ContaBancariaDAO {
             
         } catch (SQLException ex) {
             
-            Logger.getLogger(ContaBancariaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
             
         }
         
@@ -49,26 +50,28 @@ public class ContaBancariaDAO {
     // -----> SELECT
     // -----> depois faremos o UPDATE
     
-    public List<ContaBancaria> consultaContaBancaria(){
+    public List<Usuario> consultaCliente(){
         
-        List<ContaBancaria> retorno = null;
+        List<Usuario> retorno = null;
         
         try {
             
-            retorno =  new ArrayList<ContaBancaria>();
+            retorno =  new ArrayList<Usuario>();
             Conexao c = new Conexao();
             Connection conexao = c.obterConexao();
-            String SQL = "SELECT * FROM Gerenciamento_de_Barbearia_BD.ContaBancaria";
+            String SQL = "SELECT * FROM Gerenciamento_de_Barbearia_BD.Cliente";
             PreparedStatement ps = conexao.prepareStatement(SQL);
             ResultSet r = ps.executeQuery();
             
             while(r.next()){
                 
-                ContaBancaria atual = new ContaBancaria();
+                Usuario atual = new Usuario();
                 atual.setCodigo(r.getString("codigo"));
+                atual.setNome(r.getString("nome"));
+                atual.setIdade(r.getInt("idade"));
                 atual.setSenha(r.getString("senha"));
-                atual.setAgencia(r.getString("agencia"));
-                atual.setNomeTitular(r.getString("nome"));
+                atual.setEmail(r.getString("email"));
+                atual.setTipoUsuario(r.getString("tipousUario"));
                 retorno.add(atual);
                 
             }
@@ -77,7 +80,7 @@ public class ContaBancariaDAO {
             
         } catch (SQLException ex) {
             
-            Logger.getLogger(ContaBancariaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
             
         }
         
@@ -85,26 +88,28 @@ public class ContaBancariaDAO {
         
     }
     
-    public List<ContaBancaria> RelatorioGeral(){
+    public List<Usuario> RelatorioGeral(){
         
-        List<ContaBancaria> retorno = null;
+        List<Usuario> retorno = null;
         
         try{
             
-            retorno = new ArrayList<ContaBancaria>();
+            retorno = new ArrayList<Usuario>();
             Conexao c = new Conexao();
             Connection conexao = c.obterConexao();
-            String SQL = "SELECT nome, agencia FROM Gerenciamento_de_Barbearia_BD.ContaBancaria";
+            String SQL = "SELECT codigo, nome, idade, tipoUsuario FROM Gerenciamento_de_Barbearia_BD.Cliente";
             PreparedStatement ps = conexao.prepareStatement(SQL);
             ResultSet r = ps.executeQuery();
             
             while(r.next()){
                 
-                ContaBancaria atual = new ContaBancaria();
+                Usuario atual = new Usuario();
                 atual.setCodigo(r.getString("codigo"));
+                atual.setNome(r.getString("nome"));
+                atual.setIdade(r.getInt("idade"));
                 atual.setSenha(r.getString("senha"));
-                atual.setAgencia(r.getString("agencia"));
-                atual.setNomeTitular(r.getString("nome"));
+                atual.setEmail(r.getString("email"));
+                atual.setTipoUsuario(r.getString("tipousUario"));
                 retorno.add(atual);
                 
             }
@@ -113,7 +118,7 @@ public class ContaBancariaDAO {
             
         }catch(SQLException ex){
             
-            Logger.getLogger(ContaBancariaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
             
             return null;
             
@@ -121,4 +126,5 @@ public class ContaBancariaDAO {
         
         return retorno;
     }
+    
 }

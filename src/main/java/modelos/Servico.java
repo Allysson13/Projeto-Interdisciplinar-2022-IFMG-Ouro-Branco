@@ -9,6 +9,10 @@ public class Servico {
     private String manutencao;
     
     //construtores
+    
+    public Servico() {
+        
+    }
 
     public Servico(String produtos, String tipoServiço, String manutencao) {
         this.produtos = produtos;

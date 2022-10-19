@@ -22,7 +22,7 @@ public class AtendimentoDAO {
             
             String SQL1 = "INSERT INTO Gerenciamento_de_Barbearia_BD.Atendimento"
                     + "(data, tipoServico, valor, nomeClente, musicaFavorita)"
-                    + "Values(?, ?, ?, ?, ?);";
+                    + "Values(?, ?, ?, ?);";
             
             Conexao c = new Conexao();
             Connection conexao = c.obterConexao();
@@ -31,7 +31,6 @@ public class AtendimentoDAO {
             ps1.setString(2, a.getTipoServico());
             ps1.setDouble(2, a.getValor());
             ps1.setString(2, a.getNomeCliente());
-            ps1.setString(2, a.getMusicaFavorita());
             
             ps1.executeUpdate();
             
@@ -70,7 +69,6 @@ public class AtendimentoDAO {
                 atual.setTipoServico(r.getString("tipoServico"));
                 atual.setValor(r.getDouble("valor"));
                 atual.setNomeCliente(r.getString("nomeCliente"));
-                atual.setMusicaFavorita(r.getString("musicaFavorita"));
                 retorno.add(atual);
                 
             }
@@ -107,7 +105,6 @@ public class AtendimentoDAO {
                 atual.setTipoServico(r.getString("tipoServico"));
                 atual.setValor(r.getDouble("valor"));
                 atual.setNomeCliente(r.getString("nomeCliente"));
-                atual.setMusicaFavorita(r.getString("musicaFavorita"));
                 retorno.add(atual);
                 
             }

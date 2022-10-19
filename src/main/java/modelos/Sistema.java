@@ -1,13 +1,42 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelos;
 
-/**
- *
- * @author 0063398
- */
 public class Sistema {
+    
+    //atributos
+    
+    private String nome;
+    private String linkDownload;
+    
+    //construtores
+
+    public Sistema() {
+    }
+
+    public Sistema(String nome, String linkDownload) {
+        this.nome = nome;
+        this.linkDownload = linkDownload;
+    }
+    
+    //encapsulamento
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getLinkDownload() {
+        return linkDownload;
+    }
+
+    public void setLinkDownload(String linkDownload) {
+        this.linkDownload = linkDownload;
+    }
+    
+    //comportamentos
+    
+    
     
 }

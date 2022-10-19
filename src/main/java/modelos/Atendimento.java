@@ -10,19 +10,17 @@ public class Atendimento {
     private String tipoServico;
     private double valor;
     private String nomeCliente;
-    private String musicaFavorita;
     
     //construtores
 
     public Atendimento() {
     }
 
-    public Atendimento(Date data, String tipoServico, double valor, String nomeCliente, String musicaFavorita) {
+    public Atendimento(Date data, String tipoServico, double valor, String nomeCliente) {
         this.data = data;
         this.tipoServico = tipoServico;
         this.valor = valor;
         this.nomeCliente = nomeCliente;
-        this.musicaFavorita = musicaFavorita;
     }
     
     //encapsulamento
@@ -57,14 +55,6 @@ public class Atendimento {
 
     public void setNomeCliente(String nomeCliente) {
         this.nomeCliente = nomeCliente;
-    }
-
-    public String getMusicaFavorita() {
-        return musicaFavorita;
-    }
-
-    public void setMusicaFavorita(String musicaFavorita) {
-        this.musicaFavorita = musicaFavorita;
     }
     
     //comportamentos

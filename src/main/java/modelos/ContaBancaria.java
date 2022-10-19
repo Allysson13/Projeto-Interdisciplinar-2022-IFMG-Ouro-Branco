@@ -7,7 +7,7 @@ public class ContaBancaria {
     private String codigo;
     private String senha;
     private String agencia;
-    private String nome;
+    private String nomeTitular;
     
     //construtores
 
@@ -18,7 +18,7 @@ public class ContaBancaria {
         this.codigo = codigo;
         this.senha = senha;
         this.agencia = agencia;
-        this.nome = nome;
+        this.nomeTitular = nome;
     }
     
     //encapsulamento
@@ -47,12 +47,12 @@ public class ContaBancaria {
         this.agencia = agencia;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeTitular() {
+        return nomeTitular;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeTitular(String nomeTitular) {
+        this.nomeTitular = nomeTitular;
     }
     
     //comportamenetos
