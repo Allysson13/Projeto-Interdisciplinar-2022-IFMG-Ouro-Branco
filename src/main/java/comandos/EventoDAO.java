@@ -9,17 +9,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import modelos.Noivo;
+import modelos.Evento;
 
-public class NoivoDAO {
+public class EventoDAO {
     
     //DAO -> sigla para Data Access Object
     
     //metodo para inserir
-    public boolean inserirEndereco(Noivo e){
+    public boolean inserirEndereco(Evento e){
         
         try {
-            String SQL1 = "INSERT INTO Gerenciamento_de_Barbearia_BD.Noivo"
+            String SQL1 = "INSERT INTO Gerenciamento_de_Barbearia_BD.Evento"
                     + "(nomeConvidados, nomePadrinhos)"
                     + "Values(?, ?);";
             
@@ -34,7 +34,7 @@ public class NoivoDAO {
             
         } catch (SQLException ex) {
             
-            Logger.getLogger(NoivoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EventoDAO.class.getName()).log(Level.SEVERE, null, ex);
             
         }
         
@@ -45,24 +45,28 @@ public class NoivoDAO {
     // -----> SELECT
     // -----> depois faremos o UPDATE
     
-    public List<Noivo> consultaNoivo(){
+    public List<Evento> consultaNoivo(){
         
-        List<Noivo> retorno = null;
+        List<Evento> retorno = null;
         
         try {
             
-            retorno =  new ArrayList<Noivo>();
+            retorno =  new ArrayList<Evento>();
             Conexao c = new Conexao();
             Connection conexao = c.obterConexao();
-            String SQL = "SELECT * FROM Gerenciamento_de_Barbearia_BD.Noivo";
+            String SQL = "SELECT * FROM Gerenciamento_de_Barbearia_BD.Evento";
             PreparedStatement ps = conexao.prepareStatement(SQL);
             ResultSet r = ps.executeQuery();
             
             while(r.next()){
                 
-                Noivo atual = new Noivo();
+                Evento atual = new Evento();
                 atual.setNomeConvidados(r.getString("nomeConvidados"));
-                atual.setNomePadrinhos(r.getString("nomePadrinhos"));
+                atual.setFotografo(r.getString("fotografo"));
+                atual.setDuracao(r.getDouble("duracao"));
+                atual.setData(r.getDate("data"));
+                atual.setCenario(r.getString("cenario"));
+                atual.setAlimentacao(r.getString("alimentacao"));
                 retorno.add(atual);
                 
             }
@@ -71,7 +75,7 @@ public class NoivoDAO {
             
         } catch (SQLException ex) {
             
-            Logger.getLogger(NoivoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EventoDAO.class.getName()).log(Level.SEVERE, null, ex);
             
         }
         
@@ -79,24 +83,28 @@ public class NoivoDAO {
         
     }
     
-    public List<Noivo> RelatorioGeral(){
+    public List<Evento> RelatorioGeral(){
         
-        List<Noivo> retorno = null;
+        List<Evento> retorno = null;
         
         try{
             
-            retorno = new ArrayList<Noivo>();
+            retorno = new ArrayList<Evento>();
             Conexao c = new Conexao();
             Connection conexao = c.obterConexao();
-            String SQL = "SELECT nome, agencia FROM Gerenciamento_de_Barbearia_BD.Noivo";
+            String SQL = "SELECT nome, agencia FROM Gerenciamento_de_Barbearia_BD.Evento";
             PreparedStatement ps = conexao.prepareStatement(SQL);
             ResultSet r = ps.executeQuery();
             
             while(r.next()){
                 
-                Noivo atual = new Noivo();
+                Evento atual = new Evento();
                 atual.setNomeConvidados(r.getString("nomeConvidados"));
-                atual.setNomePadrinhos(r.getString("nomePadrinhos"));
+                atual.setFotografo(r.getString("fotografo"));
+                atual.setDuracao(r.getDouble("duracao"));
+                atual.setData(r.getDate("data"));
+                atual.setCenario(r.getString("cenario"));
+                atual.setAlimentacao(r.getString("alimentacao"));
                 retorno.add(atual);
                 
             }
@@ -105,7 +113,7 @@ public class NoivoDAO {
             
         }catch(SQLException ex){
             
-            Logger.getLogger(NoivoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EventoDAO.class.getName()).log(Level.SEVERE, null, ex);
             
             return null;
             

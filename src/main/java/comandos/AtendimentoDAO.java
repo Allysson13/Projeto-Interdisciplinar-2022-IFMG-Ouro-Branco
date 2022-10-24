@@ -21,7 +21,7 @@ public class AtendimentoDAO {
         try {
             
             String SQL1 = "INSERT INTO Gerenciamento_de_Barbearia_BD.Atendimento"
-                    + "(data, tipoServico, valor, nomeClente, musicaFavorita)"
+                    + "(data, tipoServico, valor, nomeClente)"
                     + "Values(?, ?, ?, ?);";
             
             Conexao c = new Conexao();

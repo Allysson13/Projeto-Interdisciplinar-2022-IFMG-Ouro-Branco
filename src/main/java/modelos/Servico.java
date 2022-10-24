@@ -7,6 +7,7 @@ public class Servico {
     private String produtos;
     private String tipoServiço;
     private String manutencao;
+    private String modalidade;
     
     //construtores
     
@@ -14,10 +15,11 @@ public class Servico {
         
     }
 
-    public Servico(String produtos, String tipoServiço, String manutencao) {
+    public Servico(String produtos, String tipoServiço, String manutencao, String modalidade) {
         this.produtos = produtos;
         this.tipoServiço = tipoServiço;
         this.manutencao = manutencao;
+        this.modalidade = modalidade;
     }
     
     //encapsulamento
@@ -44,6 +46,14 @@ public class Servico {
 
     public void setManutencao(String manutencao) {
         this.manutencao = manutencao;
+    }
+    
+    public String getModalidade() {
+        return modalidade;
+    }
+
+    public void setModalidade(String modalidade) {
+        this.modalidade = modalidade;
     }
     
     //comportamentos
