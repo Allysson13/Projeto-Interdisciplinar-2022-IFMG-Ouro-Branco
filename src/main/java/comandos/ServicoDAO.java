@@ -21,8 +21,8 @@ public class ServicoDAO {
         try {
             
             String SQL1 = "INSERT INTO Gerenciamento_de_Barbearia_BD.Servico"
-                    + "(produtos, tipoServico, manutencao)"
-                    + "Values(?, ?, ?);";
+                    + "(produtos, tipoServico, manutencao, modalidade)"
+                    + "Values(?, ?, ?, ?);";
             
             Conexao c = new Conexao();
             Connection conexao = c.obterConexao();
@@ -30,6 +30,7 @@ public class ServicoDAO {
             ps1.setString(1, e.getProdutos());
             ps1.setString(2, e.getTipoServiço());
             ps1.setString(2, e.getManutencao());
+            ps1.setString(2, e.getModalidade());
             
             ps1.executeUpdate();
             
@@ -67,6 +68,7 @@ public class ServicoDAO {
                 atual.setProdutos(r.getString("produtos"));
                 atual.setTipoServiço(r.getString("tipoServico"));
                 atual.setManutencao(r.getString("manutencao"));
+                atual.setModalidade(r.getString("modalidade"));
                 retorno.add(atual);
                 
             }
@@ -102,6 +104,7 @@ public class ServicoDAO {
                 atual.setProdutos(r.getString("produtos"));
                 atual.setTipoServiço(r.getString("tipoServico"));
                 atual.setManutencao(r.getString("manutencao"));
+                atual.setModalidade(r.getString("modalidade"));
                 retorno.add(atual);
                 
             }

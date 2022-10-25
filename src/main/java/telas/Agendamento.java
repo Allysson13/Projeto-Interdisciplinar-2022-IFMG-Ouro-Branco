@@ -71,7 +71,7 @@ public class Agendamento extends javax.swing.JFrame {
 
         checkBoxSobrancelha.setText("Sobrancelha");
 
-        botaoEnviar.setText("Enviar");
+        botaoEnviar.setText("Confirmar");
         botaoEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoEnviarActionPerformed(evt);

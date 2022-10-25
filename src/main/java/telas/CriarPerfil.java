@@ -94,7 +94,7 @@ public class CriarPerfil extends javax.swing.JFrame {
             }
         });
 
-        botaoEnviar.setText("jButton1");
+        botaoEnviar.setText("Confirmar");
 
         botaoCancelar.setText("Cancelar");
 
@@ -133,7 +133,7 @@ public class CriarPerfil extends javax.swing.JFrame {
                                 .addComponent(botaoCliente)
                                 .addGap(38, 38, 38)
                                 .addComponent(botaoEnviar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                                 .addComponent(botaoCancelar)))))
                 .addContainerGap())
         );

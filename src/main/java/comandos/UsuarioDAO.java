@@ -19,7 +19,7 @@ public class UsuarioDAO {
     public boolean inserirAtendimento(Usuario b){
         
         try {
-            String SQL1 = "INSERT INTO Gerenciamento_de_Barbearia_BD.Cliente"
+            String SQL1 = "INSERT INTO Gerenciamento_de_Barbearia_BD.Usuario"
                     + "(codigo, nome, idade, senha, email, tipoUsuario)"
                     + "Values(?, ?, ?);";
             
@@ -59,7 +59,7 @@ public class UsuarioDAO {
             retorno =  new ArrayList<Usuario>();
             Conexao c = new Conexao();
             Connection conexao = c.obterConexao();
-            String SQL = "SELECT * FROM Gerenciamento_de_Barbearia_BD.Cliente";
+            String SQL = "SELECT * FROM Gerenciamento_de_Barbearia_BD.Usuario";
             PreparedStatement ps = conexao.prepareStatement(SQL);
             ResultSet r = ps.executeQuery();
             
@@ -97,7 +97,7 @@ public class UsuarioDAO {
             retorno = new ArrayList<Usuario>();
             Conexao c = new Conexao();
             Connection conexao = c.obterConexao();
-            String SQL = "SELECT codigo, nome, idade, tipoUsuario FROM Gerenciamento_de_Barbearia_BD.Cliente";
+            String SQL = "SELECT codigo, nome, idade, tipoUsuario FROM Gerenciamento_de_Barbearia_BD.Usuario";
             PreparedStatement ps = conexao.prepareStatement(SQL);
             ResultSet r = ps.executeQuery();
             

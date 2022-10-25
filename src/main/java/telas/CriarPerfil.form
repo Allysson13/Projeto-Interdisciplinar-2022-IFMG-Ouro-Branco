@@ -107,7 +107,7 @@
                                   <Component id="botaoCliente" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                                   <Component id="botaoEnviar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="98" max="32767" attributes="0"/>
+                                  <EmptySpace pref="88" max="32767" attributes="0"/>
                                   <Component id="botaoCancelar" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -205,7 +205,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="botaoEnviar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jButton1"/>
+            <Property name="text" type="java.lang.String" value="Confirmar"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="botaoCancelar">
