@@ -8,7 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import telas.Opções;
 
-public class Sistema {
+public class Sistema{
     
     //atributos
     
