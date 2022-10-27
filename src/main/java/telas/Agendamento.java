@@ -1,20 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package telas;
 
-/**
- *
- * @author 0063398
- */
-public class Agendamento extends javax.swing.JFrame {
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import comandos.AtendimentoDAO;
+import modelos.Atendimento;
 
-    /**
-     * Creates new form Agendamento
-     */
+public class Agendamento extends javax.swing.JFrame {
+    
+    private String nome;
+    private Date data;
+    private String tipoServico;
+    private double valor;
+    private int opcao;
+
     public Agendamento() {
+        
         initComponents();
+        
     }
 
     /**
@@ -32,29 +37,36 @@ public class Agendamento extends javax.swing.JFrame {
         fieldNome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         fieldData = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        fieldHorario = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         checkBoxCabelo = new javax.swing.JCheckBox();
         checkBoxBarba = new javax.swing.JCheckBox();
         checkBoxSobrancelha = new javax.swing.JCheckBox();
-        botaoEnviar = new javax.swing.JButton();
+        botaoConfirmar = new javax.swing.JButton();
         botaoCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 51, 204));
+        jPanel1.setBackground(new java.awt.Color(0, 51, 102));
 
+        jLabel1.setForeground(new java.awt.Color(0, 255, 255));
         jLabel1.setText("Agendamento");
 
+        jLabel3.setBackground(new java.awt.Color(0, 0, 204));
+        jLabel3.setForeground(new java.awt.Color(0, 255, 255));
         jLabel3.setText("Informe o seu nome: ");
 
+        fieldNome.setBackground(new java.awt.Color(0, 0, 204));
+
+        jLabel2.setBackground(new java.awt.Color(0, 0, 204));
+        jLabel2.setForeground(new java.awt.Color(0, 255, 255));
         jLabel2.setText("Informe a data do atendimento: ");
 
-        jLabel5.setText("Informe o horário do atendimento: ");
+        fieldData.setBackground(new java.awt.Color(0, 0, 204));
 
+        jLabel4.setForeground(new java.awt.Color(0, 255, 255));
         jLabel4.setText("Informe o tipo do serviço: ");
 
+        checkBoxCabelo.setForeground(new java.awt.Color(0, 255, 255));
         checkBoxCabelo.setText("Cabelo");
         checkBoxCabelo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,6 +74,7 @@ public class Agendamento extends javax.swing.JFrame {
             }
         });
 
+        checkBoxBarba.setForeground(new java.awt.Color(0, 255, 255));
         checkBoxBarba.setText("Barba");
         checkBoxBarba.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,15 +82,25 @@ public class Agendamento extends javax.swing.JFrame {
             }
         });
 
+        checkBoxSobrancelha.setForeground(new java.awt.Color(0, 255, 255));
         checkBoxSobrancelha.setText("Sobrancelha");
-
-        botaoEnviar.setText("Confirmar");
-        botaoEnviar.addActionListener(new java.awt.event.ActionListener() {
+        checkBoxSobrancelha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoEnviarActionPerformed(evt);
+                checkBoxSobrancelhaActionPerformed(evt);
             }
         });
 
+        botaoConfirmar.setBackground(new java.awt.Color(0, 0, 204));
+        botaoConfirmar.setForeground(new java.awt.Color(0, 255, 255));
+        botaoConfirmar.setText("Confirmar");
+        botaoConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoConfirmarActionPerformed(evt);
+            }
+        });
+
+        botaoCancelar.setBackground(new java.awt.Color(0, 0, 204));
+        botaoCancelar.setForeground(new java.awt.Color(0, 255, 255));
         botaoCancelar.setText("Cancelar");
         botaoCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,19 +128,12 @@ public class Agendamento extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(fieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel4)
-                                    .addComponent(checkBoxCabelo)
                                     .addComponent(checkBoxBarba))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(botaoEnviar)
-                                    .addComponent(jLabel5))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fieldHorario)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(botaoCancelar))))))
+                                .addComponent(botaoConfirmar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botaoCancelar))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -128,6 +144,10 @@ public class Agendamento extends javax.swing.JFrame {
                                 .addComponent(checkBoxSobrancelha)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(checkBoxCabelo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,21 +163,17 @@ public class Agendamento extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(fieldData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(fieldHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(checkBoxCabelo)
                 .addGap(18, 18, 18)
                 .addComponent(checkBoxBarba)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(checkBoxSobrancelha)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(botaoEnviar)
-                        .addComponent(botaoCancelar)))
+                .addComponent(checkBoxSobrancelha)
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoConfirmar)
+                    .addComponent(botaoCancelar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -176,25 +192,75 @@ public class Agendamento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void checkBoxCabeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxCabeloActionPerformed
-        // TODO add your handling code here:
+        
+        opcao = 1;
+        
     }//GEN-LAST:event_checkBoxCabeloActionPerformed
 
-    private void botaoEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEnviarActionPerformed
+    private void botaoConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConfirmarActionPerformed
         
-    }//GEN-LAST:event_botaoEnviarActionPerformed
+        this.nome = fieldNome.getText();
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        
+        try {
+            
+            this.data = (Date) formato.parse(fieldData.getText());
+            
+        } catch (ParseException ex) {
+            
+            Logger.getLogger(Agendamento.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+        
+        switch(opcao){
+            
+            case 1:
+                
+                this.tipoServico = "Cabelo";
+                this.valor = 20;
+                
+                break;
+                
+            case 2:
+                
+                this.tipoServico = "Barba";
+                this.valor = 10;
+                
+                break;
+                
+            default:
+                
+                this.tipoServico = "Sobrancelha";
+                this.valor = 5;
+                
+                break;
+            
+        }
+        
+        Atendimento novoAtendimento = new Atendimento(data, tipoServico, valor, nome);
+        //fecha frame
+        
+    }//GEN-LAST:event_botaoConfirmarActionPerformed
 
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
+        
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void checkBoxBarbaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxBarbaActionPerformed
-        // TODO add your handling code here:
+        
+        opcao = 2;
+        
     }//GEN-LAST:event_checkBoxBarbaActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    private void checkBoxSobrancelhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxSobrancelhaActionPerformed
+
+        opcao = 3;
+
+    }//GEN-LAST:event_checkBoxSobrancelhaActionPerformed
+
+    public static void main() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -228,18 +294,16 @@ public class Agendamento extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCancelar;
-    private javax.swing.JButton botaoEnviar;
+    private javax.swing.JButton botaoConfirmar;
     private javax.swing.JCheckBox checkBoxBarba;
     private javax.swing.JCheckBox checkBoxCabelo;
     private javax.swing.JCheckBox checkBoxSobrancelha;
     private javax.swing.JTextField fieldData;
-    private javax.swing.JTextField fieldHorario;
     private javax.swing.JTextField fieldNome;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -59,7 +59,7 @@ public class Sistema{
         
         while(r.next()){
             
-            System.out.println("Disciplina: " + r.getString("disciplina"));
+            System.out.println("Dados: " + r.getString(""));
             
         }
         
@@ -75,7 +75,8 @@ public class Sistema{
     
     public static void main(String[] args){
         
-        Opções.main(args);
+        //Opções.main(args);
+        Teste();
         
     }
     
