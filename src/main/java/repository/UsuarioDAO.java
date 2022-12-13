@@ -55,12 +55,8 @@ public class UsuarioDAO {
             FabricaBanco c = new FabricaBanco();
             Connection conexao = c.getConexao();
             PreparedStatement transacao = conexao.prepareStatement(SQL1);
-            transacao.setString(1, b.getCodigo());
-            transacao.setString(2, b.getNome());
-            transacao.setInt(2, b.getIdade());
-            transacao.setString(2, b.getSenha());
+            transacao.setString(1, b.getSenha());
             transacao.setString(2, b.getEmail());
-            transacao.setString(2, b.getTipoUsuario());
             
             transacao.execute();
             
