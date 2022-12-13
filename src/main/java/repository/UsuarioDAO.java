@@ -15,7 +15,7 @@ public class UsuarioDAO {
     //DAO -> sigla para Data Access Object
     
     //metodo para inserir
-    public static boolean inserirPerfil(Usuario b){
+    public static boolean inserirPerfil(Usuario b) {
         
         try {
             String SQL1 = "INSERT INTO \"Gerenciamento_de_Barbearia_BD\".\"Usuario\""
