@@ -2,6 +2,7 @@ package telas;
 
 import controller.RegraTabelaPerfil;
 import modelos.Usuario;
+import repository.UsuarioDAO;
 
 public class CriarPerfil extends javax.swing.JFrame {
     
@@ -231,7 +232,8 @@ public class CriarPerfil extends javax.swing.JFrame {
         
         Usuario usuarioLogado = Login.retornaUsuarioLogado();
         Usuario novoUsuario = new Usuario(nome, idade, usuarioLogado.getSenha(), usuarioLogado.getEmail(), tipoUsuario);
-        //deletaUsuario(usuarioLogado);
+        UsuarioDAO.inserirPerfil(novoUsuario);
+        UsuarioDAO.deletaUsuario(usuarioLogado);
         
         this.dispose();
         

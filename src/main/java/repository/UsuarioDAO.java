@@ -15,7 +15,7 @@ public class UsuarioDAO {
     //DAO -> sigla para Data Access Object
     
     //metodo para inserir
-    public static boolean inserirPerfil(Usuario b) {
+    public static boolean inserirPerfil(Usuario u) {
         
         try {
             String SQL1 = "INSERT INTO \"Gerenciamento_de_Barbearia_BD\".\"Usuario\""
@@ -25,11 +25,11 @@ public class UsuarioDAO {
             FabricaBanco c = new FabricaBanco();
             Connection conexao = c.getConexao();
             PreparedStatement transacao = conexao.prepareStatement(SQL1);
-            transacao.setString(1, b.getNome());
-            transacao.setInt(2, b.getIdade());
-            transacao.setString(3, b.getSenha());
-            transacao.setString(4, b.getEmail());
-            transacao.setString(5, b.getTipoUsuario());
+            transacao.setString(1, u.getNome());
+            transacao.setInt(2, u.getIdade());
+            transacao.setString(3, u.getSenha());
+            transacao.setString(4, u.getEmail());
+            transacao.setString(5, u.getTipoUsuario());
             
             transacao.execute();
             
@@ -45,7 +45,7 @@ public class UsuarioDAO {
         
     }
     
-    public static boolean inserirUsuario(Usuario b){
+    public static boolean inserirUsuario(Usuario u){
         
         try {
             String SQL1 = "INSERT INTO \"Gerenciamento_de_Barbearia_BD\".\"Usuario\""
@@ -55,8 +55,35 @@ public class UsuarioDAO {
             FabricaBanco c = new FabricaBanco();
             Connection conexao = c.getConexao();
             PreparedStatement transacao = conexao.prepareStatement(SQL1);
-            transacao.setString(1, b.getSenha());
-            transacao.setString(2, b.getEmail());
+            transacao.setString(1, u.getSenha());
+            transacao.setString(2, u.getEmail());
+            
+            transacao.execute();
+            
+            return true;
+            
+        } catch (SQLException ex) {
+            
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+        
+        return false;
+        
+    }
+    
+    public static boolean deletaUsuario(Usuario u) {
+        
+        try {
+	
+            String SQL1 = "DELETE FROM \"Gerenciamento_de_Barbearia_BD\".\"Usuario\""
+                    + "WHERE email=? and senha=?;";
+            
+            FabricaBanco c = new FabricaBanco();
+            Connection conexao = c.getConexao();
+            PreparedStatement transacao = conexao.prepareStatement(SQL1);
+            transacao.setString(1, u.getEmail());
+            transacao.setString(2, u.getSenha());
             
             transacao.execute();
             
